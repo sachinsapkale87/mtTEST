@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sachin.mytestcase">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- Allows access to the list of accounts in the Accounts Service.
+    (Required For Oauth login and Google login using BuiltUILoginController) -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Allows an application to request authtokens from the AccountManager.
+    (Required For Oauth login and Google login using BuiltUILoginController) -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <!-- Allows an app to access precise location from location sources. (Required For location) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Allows an app to access approximate location derived from network location sources. (Required For location) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Allow the application to access Google web-based services -->
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="DBapp.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="DBapp.Mainactivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+
+
+
+
+
+        <service
+            android:name="DBapp.CreateDBintentService"
+            android:exported="false" />
+
+        <service
+            android:name="DBapp.LoadDeltaService"
+            android:exported="false" />
+
+        <!-- To check network availability. Called every time when network
+connection state changes -->
+        <receiver
+            android:name="com.raweng.built.ConnectionStatus"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" >
+                </action>
+            </intent-filter>
+        </receiver>
+        <!-- To delete expired cache from built cache folder -->
+        <receiver
+            android:name="com.raweng.built.BuiltClearCache"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="StartClearingCache" >
+                </action>
+            </intent-filter>
+        </receiver>
+        <!-- add for new upgradation of google play services if required -->
+        <activity
+            android:name="com.raweng.built.userInterface.UIAndroidExplorerScreen"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.raweng.built.userInterface.BuiltTwitterLoginActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="twitterlogin" android:scheme="x-oauthflow-twitter" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

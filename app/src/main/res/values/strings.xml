@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyTestCase</string>
+    <string name="u_error">Username Error</string>
+    <string name="p_error">Password Error</string>
+</resources>
